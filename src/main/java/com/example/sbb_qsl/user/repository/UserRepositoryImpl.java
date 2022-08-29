@@ -1,6 +1,6 @@
 package com.example.sbb_qsl.user.repository;
 
-import com.example.sbb_qsl.user.entity.QSiteUser;
+import static com.example.sbb_qsl.user.entity.QSiteUser.siteUser;
 import com.example.sbb_qsl.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +17,10 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
         WHERE id = 1
         */
 
-
         return jpaQueryFactory
-                .select(QSiteUser.siteUser)
-                .from(QSiteUser.siteUser)
-                .where(QSiteUser.siteUser.id.eq(id))
+                .select(siteUser)
+                .from(siteUser)
+                .where(siteUser.id.eq(id))
                 .fetchOne();
     }
 }
