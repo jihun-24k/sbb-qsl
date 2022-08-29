@@ -5,6 +5,8 @@ import com.example.sbb_qsl.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepositoryCustom{
     private final JPAQueryFactory jpaQueryFactory;
@@ -34,6 +36,16 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
 
     @Override
     public SiteUser getQslUserOrderByIdAscOne() {
+        return jpaQueryFactory
+                .select(siteUser)
+                .from(siteUser)
+                .orderBy(siteUser.id.asc())
+                .limit(1)
+                .fetchOne();
+    }
+
+    @Override
+    public List<SiteUser> getQslUsersOrderByIdAsc() {
         return null;
     }
 }
