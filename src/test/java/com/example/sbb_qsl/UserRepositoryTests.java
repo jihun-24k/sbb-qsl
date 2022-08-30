@@ -165,4 +165,20 @@ class UserRepositoryTests {
         OR site_user.email LIKE '%user%'
          */
     }
+
+    @Test
+    @DisplayName("관심사 등록")
+    void t10() {
+        SiteUser u2 = userRepository.getQslUser(2L);
+
+        u2.addInterestKeywordContent("축구");
+        u2.addInterestKeywordContent("롤");
+        u2.addInterestKeywordContent("헬스");
+        u2.addInterestKeywordContent("헬스"); // 중복등록은 무시
+
+        userRepository.save(u2);
+        // 엔티티클래스 : InterestKeyword(interest_keyword 테이블)
+        // 중간테이블도 생성되어야 함, 힌트 : @ManyToMany
+        // interest_keyword 테이블에 축구, 롤, 헬스에 해당하는 row 3개 생성
+    }
 }
