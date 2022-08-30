@@ -51,4 +51,9 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
                 .orderBy(siteUser.id.asc())
                 .fetch();
     }
+
+    @Override
+    public List<SiteUser> searchQsl(String user1) {
+        return null;
+    }
 }
