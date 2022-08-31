@@ -169,7 +169,6 @@ class UserRepositoryTests {
 
     @Test
     @DisplayName("관심사 등록")
-    @Rollback(false)
     void t10() {
         SiteUser u2 = userRepository.getQslUser(2L);
 
