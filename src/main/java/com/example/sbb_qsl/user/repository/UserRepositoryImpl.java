@@ -1,6 +1,8 @@
 package com.example.sbb_qsl.user.repository;
 
 import static com.example.sbb_qsl.user.entity.QSiteUser.siteUser;
+
+import com.example.sbb_qsl.interestKeyword.entity.QInterestKeyword;
 import com.example.sbb_qsl.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -70,5 +72,18 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
     @Override
     public Page<SiteUser> searchQsl(String kw, Pageable pageable){
         return null;
+    }
+
+    @Override
+    public List<SiteUser> getQslUsersByInterestKeyword(String keywordContent) {
+        QInterestKeyword IK = new QInterestKeyword("IK");
+
+        return jpaQueryFactory
+                .selectFrom(siteUser)
+                .innerJoin(siteUser.interestKeywords, IK)
+                .where(
+                        IK.content.eq(keywordContent)
+                )
+                .fetch();
     }
 }
