@@ -33,4 +33,7 @@ public class SiteUser {
     public void addInterestKeywordContent(String keywordContent) {
         this.interestKeywords.add(new InterestKeyword(keywordContent));
     }
+
+    public void addFollower(SiteUser u1) {
+    }
 }
