@@ -11,6 +11,9 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
+import static com.example.sbb_qsl.interestKeyword.entity.QInterestKeyword.interestKeyword;
+import static com.example.sbb_qsl.user.entity.QSiteUser.siteUser;
+
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepositoryCustom{
     private final JPAQueryFactory jpaQueryFactory;
@@ -76,13 +79,11 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
 
     @Override
     public List<SiteUser> getQslUsersByInterestKeyword(String keywordContent) {
-        QInterestKeyword IK = new QInterestKeyword("IK");
-
         return jpaQueryFactory
                 .selectFrom(siteUser)
-                .innerJoin(siteUser.interestKeywords, IK)
+                .innerJoin(siteUser.interestKeywords, interestKeyword)
                 .where(
-                        IK.content.eq(keywordContent)
+                        interestKeyword.content.eq(keywordContent)
                 )
                 .fetch();
     }
