@@ -4,6 +4,7 @@ import com.example.sbb_qsl.interestKeyword.entity.InterestKeyword;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,14 +33,17 @@ public class SiteUser {
 
     @Builder.Default
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<SiteUser> follows = new HashSet<>();
+    private Set<SiteUser> followers = new HashSet<>();
 
     public void addInterestKeywordContent(String keywordContent) {
         this.interestKeywords.add(new InterestKeyword(keywordContent));
     }
 
     public void follow(SiteUser following) {
-        following.getFollows().add(this);
-    }
+        if (this == following) return;
+        if (following == null) return;
+        if (this.getId() == following.getId()) return;
 
+        following.getFollowers().add(this);
+    }
 }
