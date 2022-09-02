@@ -35,6 +35,10 @@ public class SiteUser {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<SiteUser> followers = new HashSet<>();
 
+    @Builder.Default
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<SiteUser> followings = new HashSet<>();
+
     public void addInterestKeywordContent(String keywordContent) {
         this.interestKeywords.add(new InterestKeyword(keywordContent));
     }
@@ -45,9 +49,9 @@ public class SiteUser {
         if (this.getId() == following.getId()) return;
 
         following.getFollowers().add(this);
-    }
 
-    public Set<SiteUser> getFollowings() {
-        return new HashSet<>();
+        // 내(follower)가 유튜버(following)를 구독한다.
+        getFollowings().add(following);
+
     }
 }
