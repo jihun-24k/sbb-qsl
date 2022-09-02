@@ -4,7 +4,6 @@ import com.example.sbb_qsl.interestKeyword.entity.InterestKeyword;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +26,7 @@ public class SiteUser {
     @Column(unique = true)
     private String email;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @Builder.Default
     private Set<InterestKeyword> interestKeywords = new HashSet<>();
 
@@ -40,7 +39,7 @@ public class SiteUser {
     private Set<SiteUser> followings = new HashSet<>();
 
     public void addInterestKeywordContent(String keywordContent) {
-        this.interestKeywords.add(new InterestKeyword(keywordContent));
+        interestKeywords.add(new InterestKeyword(this, keywordContent));
     }
 
     public void follow(SiteUser following) {

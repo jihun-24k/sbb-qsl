@@ -1,8 +1,5 @@
 package com.example.sbb_qsl.user.repository;
 
-import static com.example.sbb_qsl.user.entity.QSiteUser.siteUser;
-
-import com.example.sbb_qsl.interestKeyword.entity.QInterestKeyword;
 import com.example.sbb_qsl.user.entity.SiteUser;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
