@@ -263,4 +263,12 @@ class UserRepositoryTests {
         // u2가 구독중인 회원 : 0
         assertThat(u2.getFollowings().size()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("u1은 더 이상 농구에 관심이 없습니다.")
+    void t16() {
+        SiteUser u1 = userRepository.getQslUser(1L);
+
+        u1.removeInterestKeywordContent("농구");
+    }
 }
