@@ -71,6 +71,11 @@ public class TestInitData {
             u2.addInterestKeywordContent("클라이밍");
             u2.addInterestKeywordContent("마라톤");
 
+            u3.addInterestKeywordContent("피아노");
+            u4.addInterestKeywordContent("기타");
+            u5.addInterestKeywordContent("기타");
+            u5.addInterestKeywordContent("베이스");
+
             userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6, u7, u8)); // PERSIST
 
             u8.follow(u7);
