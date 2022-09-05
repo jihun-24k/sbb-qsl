@@ -160,9 +160,9 @@ class UserRepositoryTests {
 
         SiteUser u = users.get(0);
 
-        assertThat(u.getId()).isEqualTo(2L);
-        assertThat(u.getUsername()).isEqualTo("user2");
-        assertThat(u.getEmail()).isEqualTo("user2@test.com");
+        assertThat(u.getId()).isEqualTo(8L);
+        assertThat(u.getUsername()).isEqualTo("user8");
+        assertThat(u.getEmail()).isEqualTo("user8@test.com");
         assertThat(u.getPassword()).isEqualTo("{noop}1234");
         // 검색어 : user1
         // 한 페이지에 나올 수 있는 아이템 수 : 1개
